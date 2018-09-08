@@ -1,6 +1,8 @@
 package com.example.levitin.studentslistview;
 
-public class Student {
+import java.io.Serializable;
+
+public class Student implements Serializable {
     public Gender getGender() {
         return gender;
     }

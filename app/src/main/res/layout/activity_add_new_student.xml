@@ -12,7 +12,7 @@
         android:text="Add Student" />
 
     <EditText
-        android:id="@+id/firstName"
+        android:id="@+id/fNameNewSt"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
@@ -20,11 +20,19 @@
         android:inputType="textPersonName" />
 
     <EditText
-        android:id="@+id/lastName"
+        android:id="@+id/lNameNewSt"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
         android:hint="Last Name"
+        android:inputType="textPersonName" />
+
+    <EditText
+        android:id="@+id/grNameNewSt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="Group Name"
         android:inputType="textPersonName" />
 
     <RadioGroup
