@@ -30,7 +30,7 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-    private void initializeStudents(){
+    private void fillStudents(){
         students.add(new Student("Ivan","Ivanov","IOT-0928", Student.Gender.MALE));
         students.add(new Student("Oleg","Olegov","IOT-0928", Student.Gender.MALE));
         students.add(new Student("Anna","Annova","IOT-0928", Student.Gender.FEMALE));
@@ -40,7 +40,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        initializeStudents();
+        fillStudents();
         studentsListView = (ListView)findViewById(R.id.students_ListView);
         setStudentsListView();
     }
