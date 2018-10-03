@@ -11,6 +11,9 @@ import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.dataformat.xml.XmlMapper;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -43,6 +46,11 @@ public class MainActivity extends AppCompatActivity {
         fillStudents();
         studentsListView = (ListView)findViewById(R.id.students_ListView);
         setStudentsListView();
+        try {
+            whenJavaSerializedToXmlStr_thenCorrect();
+        } catch (JsonProcessingException e) {
+            e.printStackTrace();
+        }
     }
 
 
@@ -107,7 +115,17 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(this,addNewStudentActivity.class);
         startActivityForResult(intent,codeResult);
     }
-     @Override
+
+
+    public void whenJavaSerializedToXmlStr_thenCorrect() throws JsonProcessingException {
+        XmlMapper xmlMapper = new XmlMapper();
+        Student st =new Student("Artem","Levitin","IOT904", Student.Gender.MALE);
+        String xml = xmlMapper.writeValueAsString(st);
+
+        //assertNotNull(xml);
+    }
+
+    @Override
      public void onActivityResult(int requestCode, int resultCode, Intent intent){
          if(requestCode==codeResult){
              if(resultCode==RESULT_OK){
