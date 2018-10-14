@@ -1,30 +1,47 @@
 package com.example.levitin.studentslistview;
 
-import java.io.Serializable;
+import com.j256.ormlite.field.DatabaseField;
+import com.j256.ormlite.table.DatabaseTable;
 
+import java.io.Serializable;
+import java.util.UUID;
+
+@DatabaseTable(tableName = "student")
 public class Student implements Serializable {
     public Gender getGender() {
         return gender;
     }
-
+    public Student(){}
     public void setGender(Gender gender) {
         this.gender = gender;
     }
 
     enum Gender {MALE,FEMALE};
 
+    @DatabaseField(canBeNull = true)
     private String firstName;
+
+    @DatabaseField(canBeNull = true)
     private String lastName;
+
+    @DatabaseField(canBeNull = true)
     private String nameGroup;
 
+    @DatabaseField(id=true)
+    private String id;
+
+    @DatabaseField(canBeNull = true)
     private Gender gender;
-    //int gend
+
 
 public Student(String fName, String lName, String nGroup, Gender gnd){
+
+    setID();
     setFirstName(fName);
     setLastName(lName);
     setNameGroup(nGroup);
     setGender(gnd);
+
 
 }
     public String getFirstName() {
@@ -49,6 +66,13 @@ public Student(String fName, String lName, String nGroup, Gender gnd){
 
     public void setNameGroup(String nameGroup) {
         this.nameGroup = nameGroup;
+    }
+
+    private String getID() {
+       return this.id;
+    }
+    private void setID() {
+        this.id= UUID.randomUUID().toString();
     }
 
     @Override
