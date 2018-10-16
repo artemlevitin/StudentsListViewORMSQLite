@@ -30,6 +30,7 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
         try {
             Log.i(DatabaseHelper.class.getName(), "onCreate");
             TableUtils.createTable(connectionSource, Student.class);
+
         }
         catch (SQLException e) {
             Log.e(DatabaseHelper.class.getName(), "Can't create database", e);
@@ -62,7 +63,7 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
         if (studentDao == null) {
            try {
                studentDao = getDao(Student.class);
-           }
+               }
         catch (Exception exc){
             Log.d("myLogs", exc.getMessage());
            }
@@ -70,6 +71,18 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
         return studentDao;
     }
 
+    public boolean dropCreateStudentTable() {
+
+        ConnectionSource connectionSource = getConnectionSource();
+        try {
+            TableUtils.dropTable( connectionSource,Student.class,true);
+            TableUtils.createTable(connectionSource, Student.class);
+        } catch (SQLException e) {
+            Log.e(DatabaseHelper.class.getName(), "Can't drop databases", e);
+            throw new RuntimeException(e);
+        }
+        return true;
+    }
     /**
      * Close the database connections and clear any cached DAOs.
      */
