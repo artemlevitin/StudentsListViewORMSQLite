@@ -50,11 +50,14 @@ public class ListStudent_BaseAdapter extends BaseAdapter {
 
            TextView fName = resView.findViewById(R.id.firstName);
            TextView lName = resView.findViewById(R.id.lastName);
+           TextView grName= resView.findViewById(R.id.groupName);
            ImageView imgGender = resView.findViewById(R.id.image);
 
            Student student = students.get(position);
            fName.setText(student.getFirstName());
            lName.setText(student.getLastName());
+           grName.setText(student.getNameGroup());
+
            int gender = student.getGender() == Student.Gender.MALE ? R.drawable.boy : R.drawable.girl;
            imgGender.setImageResource(gender);
            return resView;
